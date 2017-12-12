@@ -18,11 +18,11 @@ public class Account implements Funds {
 		this.password = password;
 	}
 
-	public void withdraw(BigDecimal amount) {
+	public synchronized void withdraw(BigDecimal amount) {
 		new Withdrawal(amount, this);
 	}
 
-	public void deposit(BigDecimal amount) {
+	public synchronized void deposit(BigDecimal amount) {
 		new Deposit(amount, this);
 	}
 
