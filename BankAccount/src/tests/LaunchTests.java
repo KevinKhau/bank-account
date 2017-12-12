@@ -39,6 +39,12 @@ public class LaunchTests {
 	public void testDeposits() {
 		first.deposit(new BigDecimal(20));
 		second.deposit(new BigDecimal(3000));
+//		displayBalances();
+	}
+	
+	@Test
+	public void testWithdrawals() {
+		first.withdraw(new BigDecimal(300));
 		displayBalances();
 	}
 
