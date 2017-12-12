@@ -16,7 +16,17 @@ public abstract class Operation {
 	Date date;
 	BigDecimal amount;
 	Account account;
+	String state = "Processing";
 
+	/**
+	 * @param amount
+	 *            Montant de la transaction
+	 * @param account
+	 *            Compte client
+	 * @param currency
+	 *            Devise, à prendre en compte à plus grande échelle. Dans ce
+	 *            kata, on impose l'euro pour toutes les transactions
+	 */
 	public Operation(BigDecimal amount, Account account, Currency currency) {
 		this.date = new Date();
 		this.amount = amount;
@@ -24,17 +34,21 @@ public abstract class Operation {
 		if (!checkCurrency(currency)) {
 			throw new UnsupportedOperationException(
 					"Not able to handle '" + currency.getDisplayName() + "' operations yet.");
+		} else {
+			this.currency = currency;
 		}
 		init();
 		if (!called) {
 			throw new IllegalStateException("super() not applied from derived class");
 		}
 		if (update()) {
-			account.operations.add(this);
+			state = "SUCCESS";
 		} else {
+			state = "FAILURE";
 			System.err.println(account.client.name + ": " + this.getClass().getSimpleName() + " of " + getAmount() + " "
 					+ currency.getSymbol() + ", failure.");
 		}
+		account.operations.add(this);
 	}
 
 	public Operation(BigDecimal amount, Account account) {
@@ -66,8 +80,8 @@ public abstract class Operation {
 
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + " [date=" + date + ", account=" + account + ", amount=" + amount
-				+ ", currency=" + currency + "]";
+		return this.getClass().getSimpleName().toUpperCase() + " [date=" + date + ", amount=" + getAmount() + " "
+				+ currency.getDisplayName() + ", state=" + state + "]";
 	}
 
 }

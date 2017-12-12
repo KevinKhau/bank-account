@@ -61,5 +61,20 @@ public class LaunchTests {
 		first.withdraw(twenty);
 		assertTrue(first.balance.equals(firstBalance.subtract(twenty)));
 	}
-
+	
+	@Test
+	public void testHistory() {
+		System.out.println(first.getBalance().doubleValue());
+		first.withdraw(new BigDecimal(53));
+		first.deposit(new BigDecimal(0.19));
+		first.withdraw(new BigDecimal(53));
+		first.withdraw(new BigDecimal(156161));
+		first.deposit(new BigDecimal(1566));
+		first.deposit(new BigDecimal(156500));
+		first.withdraw(new BigDecimal(156161));
+		first.withdraw(new BigDecimal(553.64));
+		first.displayHistory();
+		System.out.println(first.getBalance().doubleValue());
+	}
+	
 }

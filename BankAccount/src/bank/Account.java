@@ -24,7 +24,15 @@ public class Account implements Funds {
 	public void deposit(BigDecimal amount) {
 		new Deposit(amount, this);
 	}
-
+	
+	public void withdraw(int amount) {
+		withdraw(new BigDecimal(amount));
+	}
+	
+	public void deposit(int amount) {
+		deposit(new BigDecimal(amount));
+	}
+	
 	@Override
 	public BigDecimal getBalance() {
 		return balance;
@@ -37,8 +45,8 @@ public class Account implements Funds {
 
 	@Override
 	public void displayHistory() {
-		// TODO Auto-generated method stub
-		
+		System.out.println(" ~ Displaying history of client " + client.name + " :");
+		operations.forEach(operation -> System.out.println(operation));
 	}
 
 }
