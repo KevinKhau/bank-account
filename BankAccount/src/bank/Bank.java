@@ -27,4 +27,8 @@ public class Bank implements Funds {
 	public boolean openAccount(Client client, BigDecimal balance, int password) {
 		return accounts.add(new Account(client, balance, password));
 	}
+	
+	public boolean openAccount(Account account) {
+		return accounts.add(account);
+	}
 }

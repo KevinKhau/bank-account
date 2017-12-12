@@ -28,6 +28,11 @@ public abstract class Operation {
 		if (!called) {
 			throw new IllegalStateException("super() not applied from derived class");
 		}
+		if (update()) {
+			account.operations.add(this);
+		} else {
+			System.err.println(account.client.name + ": " + this.getClass().getSimpleName() + ", " + getAmount() + " failure.");
+		}
 	}
 	
 	public Operation(BigDecimal amount, Account account) {
@@ -50,6 +55,16 @@ public abstract class Operation {
 	 */
 	protected boolean checkCurrency(Currency currency) {
 		return currency.equals(BASE_CURRENCY);
+	}
+	
+	public float getAmount() {
+		return amount.floatValue();
+	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName() + " [date=" + date + ", account=" + account + ", amount=" + amount + ", currency=" + currency
+				+ "]";
 	}
 
 }

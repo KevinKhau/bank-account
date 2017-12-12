@@ -11,8 +11,7 @@ public class Withdrawal extends Operation {
 	@Override
 	protected boolean update() {
 		if (account.balance.compareTo(amount) == 1) {
-			account.balance.subtract(amount);
-			account.operations.add(this);
+			account.balance = account.balance.subtract(amount);
 			return true;
 		}
 		return false;

@@ -17,12 +17,12 @@ public class Account implements Funds {
 		this.password = password;
 	}
 
-	public void withdraw(Withdrawal withdrawal) {
-		if (withdrawal.update()) {
-			operations.add(withdrawal);
-		} else {
-			System.err.println(client.name + ": withdrawal failure.");
-		}
+	public void withdraw(BigDecimal amount) {
+		new Withdrawal(amount, this);
+	}
+	
+	public void deposit(BigDecimal amount) {
+		new Deposit(amount, this);
 	}
 
 	@Override
