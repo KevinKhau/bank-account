@@ -4,14 +4,15 @@ import java.math.BigDecimal;
 
 public class Withdrawal extends Operation {
 
-	public Withdrawal(BigDecimal amount, Account account, Bank bank) {
-		super(amount, account, bank);
+	public Withdrawal(BigDecimal amount, Account account) {
+		super(amount, account);
 	}
 
 	@Override
 	protected boolean update() {
 		if (account.balance.compareTo(amount) == 1) {
 			account.balance.subtract(amount);
+			account.operations.add(this);
 			return true;
 		}
 		return false;

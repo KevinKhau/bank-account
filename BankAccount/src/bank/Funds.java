@@ -4,15 +4,10 @@ import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class Funds {
+public interface Funds {
 
-	protected BigDecimal balance;
-	public List<Operation> operations = new LinkedList<>();
+	void displayHistory();
 	
-	void displayHistory() {
-		// TODO
-	}
-	
-	abstract BigDecimal getBalance();
+	BigDecimal getBalance();
 	
 }

@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 public class Deposit extends Operation {
 
-	public Deposit(BigDecimal amount, Account account, Bank bank) {
-		super(amount, account, bank);
+	public Deposit(BigDecimal amount, Account account) {
+		super(amount, account);
 		// TODO Auto-generated constructor stub
 	}
 

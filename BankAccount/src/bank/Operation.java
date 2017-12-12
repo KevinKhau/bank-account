@@ -16,14 +16,11 @@ public abstract class Operation {
 	Date date;
 	BigDecimal amount;
 	Account account;
-	Bank bank;
-
 	
-	public Operation(BigDecimal amount, Account account, Bank bank, Currency currency) {
+	public Operation(BigDecimal amount, Account account, Currency currency) {
 		this.date = new Date();
 		this.amount = amount;
 		this.account = account;
-		this.bank = bank;
 		if (!checkCurrency(currency)) {
 			throw new UnsupportedOperationException("Not able to handle '" + currency.getDisplayName() + "' operations yet.");
 		}
@@ -31,11 +28,10 @@ public abstract class Operation {
 		if (!called) {
 			throw new IllegalStateException("super() not applied from derived class");
 		}
-		update();
 	}
 	
-	public Operation(BigDecimal amount, Account account, Bank bank) {
-		this(amount, account, bank, BASE_CURRENCY);
+	public Operation(BigDecimal amount, Account account) {
+		this(amount, account, BASE_CURRENCY);
 	}
 	
 	private void init() {
