@@ -1,16 +1,18 @@
 package bank;
 
+import java.math.BigDecimal;
+
 public class Deposit extends Operation {
 
-	public Deposit(double amount, Account account, Bank bank) {
+	public Deposit(BigDecimal amount, Account account, Bank bank) {
 		super(amount, account, bank);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	protected void update() {
-		// TODO Auto-generated method stub
-
+	protected boolean update() {
+		account.balance.add(amount);
+		return true;
 	}
 
 }

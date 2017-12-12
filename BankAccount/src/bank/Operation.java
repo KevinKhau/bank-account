@@ -1,5 +1,6 @@
 package bank;
 
+import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Date;
 import java.util.Locale;
@@ -13,12 +14,12 @@ public abstract class Operation {
 	
 	Currency currency;
 	Date date;
-	double amount;
+	BigDecimal amount;
 	Account account;
 	Bank bank;
 
 	
-	public Operation(double amount, Account account, Bank bank, Currency currency) {
+	public Operation(BigDecimal amount, Account account, Bank bank, Currency currency) {
 		this.date = new Date();
 		this.amount = amount;
 		this.account = account;
@@ -33,7 +34,7 @@ public abstract class Operation {
 		update();
 	}
 	
-	public Operation(double amount, Account account, Bank bank) {
+	public Operation(BigDecimal amount, Account account, Bank bank) {
 		this(amount, account, bank, BASE_CURRENCY);
 	}
 	
@@ -41,7 +42,10 @@ public abstract class Operation {
 		called = true;
 	}
 
-	protected abstract void update();
+	/**
+	 * @return true si l'opération réussit
+	 */
+	protected abstract boolean update();
 
 	/**
 	 * Vérifie que la bonne devise est traitée. Pour l'instant, on ne traite que

@@ -1,16 +1,20 @@
 package bank;
 
+import java.math.BigDecimal;
+
 public class Withdrawal extends Operation {
 
-	public Withdrawal(double amount, Account account, Bank bank) {
+	public Withdrawal(BigDecimal amount, Account account, Bank bank) {
 		super(amount, account, bank);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	protected void update() {
-		// TODO Auto-generated method stub
-
+	protected boolean update() {
+		if (account.balance.compareTo(amount) == 1) {
+			account.balance.subtract(amount);
+			return true;
+		}
+		return false;
 	}
 
 }

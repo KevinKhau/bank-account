@@ -1,10 +1,24 @@
 package bank;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Bank {
+public class Bank extends Funds {
 
 	String name;
-	List<Account> accounts = new LinkedList<>();
+	Set<Account> accounts = new HashSet<>();
+
+	public Bank(String name) {
+		this.name = name;
+	}
+
+	public boolean add(Account account) {
+		return accounts.add(account);
+	}
+	
+	public BigDecimal getBalance() {
+		return accounts.stream().map(Account::getBalance).reduce(BigDecimal.ZERO, BigDecimal::add);
+	}
+
 }
