@@ -13,10 +13,10 @@ public abstract class Operation {
 	private boolean called = false;;
 
 	Currency currency;
-	Date date;
-	BigDecimal amount;
+	public Date date;
+	public BigDecimal amount;
 	Account account;
-	String state = "Processing";
+	public String state = "Processing";
 
 	/**
 	 * @param amount

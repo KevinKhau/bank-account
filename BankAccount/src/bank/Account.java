@@ -1,6 +1,7 @@
 package bank;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,19 +21,19 @@ public class Account implements Funds {
 	public void withdraw(BigDecimal amount) {
 		new Withdrawal(amount, this);
 	}
-	
+
 	public void deposit(BigDecimal amount) {
 		new Deposit(amount, this);
 	}
-	
+
 	public void withdraw(int amount) {
 		withdraw(new BigDecimal(amount));
 	}
-	
+
 	public void deposit(int amount) {
 		deposit(new BigDecimal(amount));
 	}
-	
+
 	@Override
 	public BigDecimal getBalance() {
 		return balance;
@@ -44,8 +45,11 @@ public class Account implements Funds {
 	}
 
 	@Override
-	public void displayHistory() {
-		System.out.println(" ~ Displaying history of client " + client.name + " :");
+	public void displayHistory(Comparator<Operation> sorter) {
+		System.out.println(" ~ Displaying history of client " + client.name + " ~");
+		if (sorter != null) {
+			operations.sort(sorter);
+		}
 		operations.forEach(operation -> System.out.println(operation));
 	}
 
