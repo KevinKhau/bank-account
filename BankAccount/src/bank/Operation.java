@@ -60,6 +60,9 @@ public abstract class Operation {
 	}
 
 	/**
+	 * Pour une approche plus réelle, on pourrait aussi requérir le mot de passe
+	 * du client.
+	 * 
 	 * @return true si l'opération réussit
 	 */
 	protected abstract boolean update();

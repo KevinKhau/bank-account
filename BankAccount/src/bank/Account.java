@@ -26,14 +26,6 @@ public class Account implements Funds {
 		new Deposit(amount, this);
 	}
 
-	public void withdraw(int amount) {
-		withdraw(new BigDecimal(amount));
-	}
-
-	public void deposit(int amount) {
-		deposit(new BigDecimal(amount));
-	}
-
 	@Override
 	public BigDecimal getBalance() {
 		return balance;
